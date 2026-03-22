@@ -21,6 +21,13 @@ It showcases my projects, skills, and contact information.
 client → React frontend  
 server → Node.js backend  
 
+## 🌐 Live Demo
+Portfolio Website: Coming Soon
+
+## 📸 Preview
+
+![Portfolio Screenshot](preview.png)
+
 ## 📬 Contact
 Email: vishalkumar7295997202@gmail.com  
 GitHub: https://github.com/Vishal7202
