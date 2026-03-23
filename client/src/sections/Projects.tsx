@@ -22,7 +22,7 @@ export default function Projects() {
 
     try {
 
-      const res = await fetch("https://your-backend.onrender.com/api/projects")
+     const res = await fetch("https://vishal-portfolio-xud3.onrender.com/api/projects")
 
       if (!res.ok) {
         throw new Error("Failed to fetch projects")
@@ -30,11 +30,14 @@ export default function Projects() {
 
       const data = await res.json()
 
-      //const list = Array.isArray(data) ? data : data.projects || []
+      const cleanProjects = data.map((p:any) => ({
+  ...p,
+  tech: Array.isArray(p.tech)
+    ? p.tech.map((t:string) => t.replace(/[\[\]"]/g,"").trim())
+    : []
+}))
 
-      //const published = list.filter(
-        //(p: Project) => p.status === "Published"
-         setProjects(data)
+setProjects(cleanProjects)
       
 
       //setProjects(published)
@@ -141,7 +144,7 @@ export default function Projects() {
                     description={project.description}
                     image={
                     project.image
-? `https://your-backend.onrender.com/uploads/${project.image}`
+? `https://vishal-portfolio-xud3.onrender.com/uploads/${project.image}`
                       : "/project1.jpg"
                   }
                     tech={project.tech}
