@@ -22,7 +22,7 @@ export default function Projects() {
 
     try {
 
-      const res = await fetch("http://localhost:5000/api/projects")
+      const res = await fetch("https://your-backend.onrender.com/api/projects")
 
       if (!res.ok) {
         throw new Error("Failed to fetch projects")
@@ -141,7 +141,7 @@ export default function Projects() {
                     description={project.description}
                     image={
                     project.image
-                      ? `http://localhost:5000/uploads/${project.image}`
+? `https://your-backend.onrender.com/uploads/${project.image}`
                       : "/project1.jpg"
                   }
                     tech={project.tech}
