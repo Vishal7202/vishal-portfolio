@@ -50,8 +50,8 @@ const [resume,setResume] = useState<File | null>(null)
 
 const [preview,setPreview] = useState("")
 const [resumeName,setResumeName] = useState("")
-
 const [loading,setLoading] = useState(false)
+
 
 useEffect(()=>{
 fetchSettings()
@@ -448,12 +448,13 @@ className="input"
 
 <button
 onClick={saveSettings}
-className="bg-gradient-to-r from-indigo-500 to-purple-600 px-8 py-3 rounded-xl"
+disabled={loading}
+className="bg-gradient-to-r from-indigo-500 to-purple-600 px-8 py-3 rounded-xl flex items-center gap-2"
 >
 
 <Save size={18}/>
 
-Save Settings
+{loading ? "Saving..." : "Save Settings"}
 
 </button>
 

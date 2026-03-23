@@ -11,7 +11,6 @@ import Blogs from "../pages/Blogs"
 import Settings from "../pages/Settings"
 
 import { FolderGit2, Mail, Users } from "lucide-react"
-import Dashboard from "../pages/Dashboard"
 
 export default function AdminDashboard() {
 

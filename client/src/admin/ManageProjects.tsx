@@ -1,4 +1,4 @@
-import { Plus, Pencil, Trash2, ExternalLink, Github, X } from "lucide-react"
+import { Plus, X } from "lucide-react"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 
