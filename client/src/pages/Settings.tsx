@@ -1,22 +1,4 @@
-import {
-Save,
-User,
-Mail,
-MapPin,
-Globe,
-Github,
-Linkedin,
-Twitter,
-Upload,
-FileText,
-Briefcase,
-Lock,
-Eye,
-EyeOff,
-Trash,
-Palette,
-Code
-} from "lucide-react"
+import { Save, Upload, Trash } from "lucide-react"
 
 import { useEffect, useState } from "react"
 import axios from "axios"
