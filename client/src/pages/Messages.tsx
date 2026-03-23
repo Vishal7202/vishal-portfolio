@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 
 export default function Messages() {
 
+  const API = "https://vishal-portfolio-xud3.onrender.com"
+
   const [messages, setMessages] = useState<any[]>([])
   const [selectedMessage, setSelectedMessage] = useState<any>(null)
   const [replyText, setReplyText] = useState("")
@@ -13,7 +15,9 @@ export default function Messages() {
 
     try {
 
-      const res = await fetch("http://localhost:5000/api/contact")
+      const res = await fetch(`${API}/api/contact`)
+
+      if (!res.ok) throw new Error("Failed to fetch messages")
 
       const data = await res.json()
 
@@ -43,11 +47,13 @@ export default function Messages() {
 
     try{
 
-      await fetch(`http://localhost:5000/api/contact/${id}`,{
+      const res = await fetch(`${API}/api/contact/${id}`,{
         method:"DELETE"
       })
 
-      setMessages(prev => prev.filter(msg => msg._id !== id))
+      if(!res.ok) throw new Error("Delete failed")
+
+      fetchMessages()
 
     }catch(err){
 
@@ -63,7 +69,7 @@ export default function Messages() {
 
     try{
 
-      await fetch(`http://localhost:5000/api/contact/read/${id}`,{
+      await fetch(`${API}/api/contact/read/${id}`,{
         method:"PUT"
       })
 
@@ -83,7 +89,7 @@ export default function Messages() {
 
     try{
 
-      await fetch(`http://localhost:5000/api/contact/reply/${selectedMessage._id}`,{
+      const res = await fetch(`${API}/api/contact/reply/${selectedMessage._id}`,{
 
         method:"POST",
 
@@ -96,6 +102,8 @@ export default function Messages() {
         })
 
       })
+
+      if(!res.ok) throw new Error("Reply failed")
 
       alert("Reply sent successfully")
 
@@ -154,60 +162,63 @@ export default function Messages() {
 
           <tbody>
 
-            {messages.map((msg) => (
+  {messages.length === 0 && (
+    <tr>
+      <td colSpan={6} className="text-center py-6 text-gray-400">
+        No messages found
+      </td>
+    </tr>
+  )}
 
-              <tr
-                key={msg._id}
-                className="border-t border-gray-800 hover:bg-[#161b22]/60 transition"
-              >
+  {messages.map((msg) => (
 
-                <td className="px-6 py-4 text-white font-medium flex items-center gap-2">
+    <tr
+      key={msg._id}
+      className="border-t border-gray-800 hover:bg-[#161b22]/60 transition"
+    >
 
-                  <Mail size={16} className="text-indigo-400"/>
+      <td className="px-6 py-4 text-white font-medium flex items-center gap-2">
 
-                  {msg.name}
+        <Mail size={16} className="text-indigo-400"/>
 
-                </td>
+        {msg.name}
 
+      </td>
 
-                <td className="px-6 py-4 text-gray-400">
-                  {msg.email}
-                </td>
+      <td className="px-6 py-4 text-gray-400">
+        {msg.email}
+      </td>
 
+      <td className="px-6 py-4 text-gray-300">
+        {msg.subject}
+      </td>
 
-                <td className="px-6 py-4 text-gray-300">
-                  {msg.subject}
-                </td>
+      <td className="px-6 py-4 text-gray-400">
+        {new Date(msg.createdAt).toLocaleDateString()}
+      </td>
 
+      <td className="px-6 py-4">
 
-                <td className="px-6 py-4 text-gray-400">
-                  {new Date(msg.createdAt).toLocaleDateString()}
-                </td>
+        <span className={`px-3 py-1 text-xs rounded-full font-medium
+        ${
+          msg.status === "new"
+            ? "bg-green-500/20 text-green-400"
+            : msg.status === "replied"
+            ? "bg-blue-500/20 text-blue-400"
+            : "bg-gray-500/20 text-gray-400"
+        }`}>
 
+          {msg.status}
 
-                <td className="px-6 py-4">
+        </span>
 
-                  <span className={`px-3 py-1 text-xs rounded-full font-medium
-                  ${
-                    msg.status === "new"
-                      ? "bg-green-500/20 text-green-400"
-                      : msg.status === "replied"
-                      ? "bg-blue-500/20 text-blue-400"
-                      : "bg-gray-500/20 text-gray-400"
-                  }`}>
-
-                    {msg.status}
-
-                  </span>
-
-                </td>
+      </td>
 
 
                 <td className="px-6 py-4">
 
                   <div className="flex justify-end gap-3">
 
-                    {/* VIEW MESSAGE */}
                     <button
                       onClick={()=>{
                         setSelectedMessage(msg)
@@ -219,7 +230,6 @@ export default function Messages() {
                     </button>
 
 
-                    {/* REPLY */}
                     <button
                       onClick={()=>{
                         setSelectedMessage(msg)
@@ -231,7 +241,6 @@ export default function Messages() {
                     </button>
 
 
-                    {/* DELETE */}
                     <button
                       onClick={()=>deleteMessage(msg._id)}
                       className="p-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 transition"

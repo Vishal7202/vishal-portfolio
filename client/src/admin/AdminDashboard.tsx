@@ -16,8 +16,9 @@ export default function AdminDashboard() {
 
   const navigate = useNavigate()
 
-  const [activePage, setActivePage] = useState("dashboard")
+  const API = "https://vishal-portfolio-xud3.onrender.com"
 
+  const [activePage, setActivePage] = useState("dashboard")
   const [sidebarOpen,setSidebarOpen] = useState(false)
 
   const [stats,setStats] = useState({
@@ -39,20 +40,23 @@ export default function AdminDashboard() {
 
   },[navigate])
 
+
+
   // ⬅ Browser Back Button → Home Page
-useEffect(() => {
+  useEffect(() => {
 
-  const handleBack = () => {
-    navigate("/")
-  }
+    const handleBack = () => {
+      navigate("/")
+    }
 
-  window.addEventListener("popstate", handleBack)
+    window.addEventListener("popstate", handleBack)
 
-  return () => {
-    window.removeEventListener("popstate", handleBack)
-  }
+    return () => {
+      window.removeEventListener("popstate", handleBack)
+    }
 
-}, [navigate])
+  }, [navigate])
+
 
 
   // 📊 Dashboard Stats
@@ -62,7 +66,8 @@ useEffect(() => {
 
       try {
 
-        const res = await fetch("http://localhost:5000/api/dashboard")
+        const res = await fetch(`${API}/api/dashboard`)
+
         const data = await res.json()
 
         setStats({
@@ -84,6 +89,7 @@ useEffect(() => {
   }, [])
 
 
+
   // 📩 Recent Messages
   useEffect(() => {
 
@@ -91,9 +97,7 @@ useEffect(() => {
 
       try {
 
-        const res = await fetch(
-          "http://localhost:5000/api/contact/recent"
-        )
+        const res = await fetch(`${API}/api/contact/recent`)
 
         const data = await res.json()
 
@@ -276,7 +280,6 @@ useEffect(() => {
 
     <div className="flex min-h-screen bg-[#020617] text-white">
 
-      {/* MOBILE OVERLAY */}
       {sidebarOpen && (
         <div
           className="fixed inset-0 bg-black/40 z-40 md:hidden"
@@ -295,15 +298,16 @@ useEffect(() => {
       >
 
         <AdminSidebar
-          activePage={activePage}
-          setActivePage={setActivePage}
-        />
+  activePage={activePage}
+  setActivePage={setActivePage}
+  messageCount={stats.messages}
+/>
 
       </div>
 
 
       {/* RIGHT SIDE */}
-     <div className="flex-1 min-w-0 flex flex-col">
+      <div className="flex-1 min-w-0 flex flex-col">
 
         {/* TOPBAR */}
         <div className="flex items-center gap-3 border-b border-gray-800 p-4">

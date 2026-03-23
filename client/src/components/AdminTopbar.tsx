@@ -80,8 +80,8 @@ export default function AdminTopbar() {
       try {
 
         const res = await fetch(
-          "http://localhost:5000/api/contact"
-        )
+  "https://vishal-portfolio-xud3.onrender.com/api/contact"
+)
 
         const data = await res.json()
 

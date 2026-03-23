@@ -38,9 +38,8 @@ const fetchStats = async()=>{
 try{
 
 const res = await axios.get(
-"http://localhost:5000/api/dashboard"
+"https://vishal-portfolio-xud3.onrender.com/api/dashboard"
 )
-
 setStats({
 visitors:res.data.visitors || 0,
 messages:res.data.messages || 0,

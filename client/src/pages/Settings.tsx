@@ -66,7 +66,7 @@ const res = await axios.get("https://vishal-portfolio-xud3.onrender.com/api/sett
 setForm({...form,...res.data})
 
 if(res.data.profileImage){
-setPreview("http://localhost:5000/uploads/"+res.data.profileImage)
+setPreview("https://vishal-portfolio-xud3.onrender.com/uploads/" + res.data.profileImage)
 }
 
 if(res.data.resume){

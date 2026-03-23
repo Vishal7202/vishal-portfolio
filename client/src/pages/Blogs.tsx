@@ -272,7 +272,7 @@ export default function Blogs() {
       {/* MODAL */}
       {showModal && (
 
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
 
           <div className="bg-[#0d1117] p-8 rounded-2xl w-[400px] border border-gray-800">
 

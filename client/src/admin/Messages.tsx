@@ -12,7 +12,7 @@ export default function Messages() {
 
     try {
 
-      const res = await fetch("http://localhost:5000/api/contact")
+      const res = await fetch("https://vishal-portfolio-xud3.onrender.com/api/contact")
 
       const data = await res.json()
 
@@ -43,7 +43,7 @@ export default function Messages() {
 
     try{
 
-      await fetch(`http://localhost:5000/api/contact/${id}`,{
+      await fetch(`https://vishal-portfolio-xud3.onrender.com/api/contact/${id}`,{
         method:"DELETE"
       })
 
@@ -64,7 +64,7 @@ export default function Messages() {
 
     try{
 
-      await fetch(`http://localhost:5000/api/contact/read/${id}`,{
+      await fetch(`https://vishal-portfolio-xud3.onrender.com/api/contact/read/${id}`,{
         method:"PUT"
       })
 

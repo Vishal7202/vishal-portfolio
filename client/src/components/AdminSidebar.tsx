@@ -11,9 +11,10 @@ import {
 type Props = {
   activePage: string
   setActivePage: (page: string) => void
+  messageCount: number
 }
 
-export default function AdminSidebar({ activePage, setActivePage }: Props) {
+export default function AdminSidebar({ activePage, setActivePage, messageCount }: Props) {
 
   const menu = [
     {
@@ -27,11 +28,11 @@ export default function AdminSidebar({ activePage, setActivePage }: Props) {
       value: "projects"
     },
     {
-      name: "Messages",
-      icon: Mail,
-      value: "messages",
-      badge: 5
-    },
+  name: "Messages",
+  icon: Mail,
+  value: "messages",
+  badge: messageCount
+},
     {
       name: "Blog Posts",
       icon: FileText,

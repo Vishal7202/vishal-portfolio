@@ -15,6 +15,8 @@ type Project = {
 
 export default function ManageProjects() {
 
+  const API = "https://vishal-portfolio-xud3.onrender.com"
+
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -31,33 +33,41 @@ export default function ManageProjects() {
     image: null as File | null
   })
 
- const resetForm = () => {
-  setFormData({
-    name: "",
-    description: "",
-    tech: "",
-    status: "Draft",
-    github: "",
-    live: "",
-    image: null
-  })
-  setEditingId(null)
-}
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      description: "",
+      tech: "",
+      status: "Draft",
+      github: "",
+      live: "",
+      image: null
+    })
+    setEditingId(null)
+  }
 
   // FETCH PROJECTS
   const fetchProjects = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/projects")
+
+      const res = await fetch(`${API}/api/projects`)
       const data = await res.json()
+
       setProjects(data)
+
     } catch {
+
       toast.error("Failed to load projects")
+
     }
+
     setLoading(false)
   }
 
   useEffect(() => {
+
     fetchProjects()
+
   }, [])
 
   // DELETE
@@ -67,11 +77,12 @@ export default function ManageProjects() {
 
     try {
 
-      await fetch(`http://localhost:5000/api/projects/${id}`, {
+      await fetch(`${API}/api/projects/${id}`, {
         method: "DELETE"
       })
 
       toast.success("Project deleted")
+
       fetchProjects()
 
     } catch {
@@ -87,15 +98,16 @@ export default function ManageProjects() {
 
     setEditingId(project._id)
 
-setFormData({
-  name: project.name,
-  description: project.description || "",
-  tech: project.tech.join(","),
-  status: project.status,
-  github: project.github || "",
-  live: project.live || "",
-  image: null
-})
+    setFormData({
+      name: project.name,
+      description: project.description || "",
+      tech: project.tech.join(","),
+      status: project.status,
+      github: project.github || "",
+      live: project.live || "",
+      image: null
+    })
+
     setShowForm(true)
 
     window.scrollTo({
@@ -106,54 +118,54 @@ setFormData({
   }
 
   // SAVE (ADD + UPDATE)
- const saveProject = async () => {
+  const saveProject = async () => {
 
-  const payload = new FormData()
+    const payload = new FormData()
 
-  payload.append("name", formData.name)
-  payload.append("description", formData.description)
-  payload.append("tech", JSON.stringify(formData.tech.split(",")))
-  payload.append("status", formData.status)
-  payload.append("github", formData.github)
-  payload.append("live", formData.live)
+    payload.append("name", formData.name)
+    payload.append("description", formData.description)
+    payload.append("tech", JSON.stringify(formData.tech.split(",")))
+    payload.append("status", formData.status)
+    payload.append("github", formData.github)
+    payload.append("live", formData.live)
 
-  if (formData.image) {
-    payload.append("image", formData.image)
-  }
+    if (formData.image) {
+      payload.append("image", formData.image)
+    }
 
-  try {
+    try {
 
-    if (editingId) {
+      if (editingId) {
 
-      await fetch(`http://localhost:5000/api/projects/${editingId}`, {
-        method: "PUT",
-        body: payload
-      })
+        await fetch(`${API}/api/projects/${editingId}`, {
+          method: "PUT",
+          body: payload
+        })
 
-      toast.success("Project updated")
+        toast.success("Project updated")
 
-    } else {
+      } else {
 
-      await fetch("http://localhost:5000/api/projects", {
-        method: "POST",
-        body: payload
-      })
+        await fetch(`${API}/api/projects`, {
+          method: "POST",
+          body: payload
+        })
 
-      toast.success("Project added")
+        toast.success("Project added")
+
+      }
+
+      resetForm()
+      setShowForm(false)
+      fetchProjects()
+
+    } catch {
+
+      toast.error("Save failed")
 
     }
 
-    resetForm()
-    setShowForm(false)
-    fetchProjects()
-
-  } catch {
-
-    toast.error("Save failed")
-
   }
-
-}
 
   return (
 
@@ -168,12 +180,12 @@ setFormData({
 
         <button
           onClick={() => {
-          resetForm()
-          setShowForm(true)
-        }}
-                  className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-white"
+            resetForm()
+            setShowForm(true)
+          }}
+          className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-white"
         >
-          <Plus size={18} />
+          <Plus size={18}/>
           Add Project
         </button>
 
@@ -197,13 +209,14 @@ setFormData({
               value={formData.name}
               onChange={(e)=>setFormData({...formData,name:e.target.value})}
             />
+
             <input
-  type="text"
-  placeholder="Project Description"
-  className="bg-[#161b22] border border-gray-700 p-3 rounded-lg md:col-span-2"
-  value={formData.description}
-  onChange={(e)=>setFormData({...formData,description:e.target.value})}
-/>
+              type="text"
+              placeholder="Project Description"
+              className="bg-[#161b22] border border-gray-700 p-3 rounded-lg md:col-span-2"
+              value={formData.description}
+              onChange={(e)=>setFormData({...formData,description:e.target.value})}
+            />
 
             <input
               type="text"
@@ -237,17 +250,18 @@ setFormData({
               <option>Draft</option>
               <option>Published</option>
             </select>
+
             <input
-  type="file"
-  accept="image/*"
-  className="bg-[#161b22] border border-gray-700 p-3 rounded-lg md:col-span-2"
-  onChange={(e)=>
-    setFormData({
-      ...formData,
-      image: e.target.files ? e.target.files[0] : null
-    })
-  }
-/>
+              type="file"
+              accept="image/*"
+              className="bg-[#161b22] border border-gray-700 p-3 rounded-lg md:col-span-2"
+              onChange={(e)=>
+                setFormData({
+                  ...formData,
+                  image: e.target.files ? e.target.files[0] : null
+                })
+              }
+            />
 
           </div>
 
@@ -261,7 +275,7 @@ setFormData({
             </button>
 
             <button
-              onClick={() => {
+              onClick={()=>{
                 setShowForm(false)
                 resetForm()
               }}
@@ -324,7 +338,7 @@ setFormData({
                     <div className="flex justify-end gap-2">
 
                       <button
-                        onClick={() => editProject(project)}
+                        onClick={()=>editProject(project)}
                         className="p-2 bg-blue-500/10 text-blue-400 rounded-lg"
                       >
                         <Pencil size={16}/>

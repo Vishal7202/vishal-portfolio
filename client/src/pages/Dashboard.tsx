@@ -29,7 +29,7 @@ export default function Dashboard() {
 
       try{
 
-        const res = await fetch("http://localhost:5000/api/dashboard")
+        const res = await fetch("https://vishal-portfolio-xud3.onrender.com/api/dashboard")
 
         const data = await res.json()
 
