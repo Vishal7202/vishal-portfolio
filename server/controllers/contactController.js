@@ -1,17 +1,19 @@
 const nodemailer = require("nodemailer")
-console.log("EMAIL USER:", process.env.EMAIL_USER)
-console.log("EMAIL PASS:", process.env.EMAIL_PASS)
 
 exports.sendContactMessage = async (req, res) => {
   try {
+
     const { name, email, subject, message } = req.body
 
     if (!name || !email || !subject || !message) {
       return res.status(400).json({ message: "All fields are required" })
     }
 
+    // Production safe transporter
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -20,9 +22,9 @@ exports.sendContactMessage = async (req, res) => {
 
     await transporter.sendMail({
       from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
-      replyTo: email,
       to: process.env.EMAIL_USER,
-      subject: subject,
+      replyTo: email,
+      subject: `New Message: ${subject}`,
       text: `
 Name: ${name}
 Email: ${email}
@@ -32,10 +34,18 @@ ${message}
       `,
     })
 
-    res.status(200).json({ message: "Message sent successfully" })
+    res.status(200).json({
+      success: true,
+      message: "Message sent successfully",
+    })
 
   } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: "Failed to send message" })
+
+    console.error("EMAIL ERROR:", error)
+
+    res.status(500).json({
+      success: false,
+      message: "Email failed to send",
+    })
   }
 }
