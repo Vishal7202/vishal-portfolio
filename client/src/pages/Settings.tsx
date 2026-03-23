@@ -61,7 +61,7 @@ const fetchSettings = async()=>{
 
 try{
 
-const res = await axios.get("http://localhost:5000/api/settings")
+const res = await axios.get("https://vishal-portfolio-xud3.onrender.com/api/settings")
 
 setForm({...form,...res.data})
 
@@ -135,10 +135,9 @@ formData.append("resume",resume)
 }
 
 await axios.put(
-"http://localhost:5000/api/settings",
+"https://vishal-portfolio-xud3.onrender.com/api/settings",
 formData
 )
-
 alert("✅ Settings Updated Successfully")
 
 }catch(err){
