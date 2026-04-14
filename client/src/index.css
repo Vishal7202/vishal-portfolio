@@ -8,9 +8,21 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background: transparent;
+  background: radial-gradient(circle at 20% 20%, #0f172a, #020617 70%);
   color: #e5e7eb;
   overflow-x: hidden;
+}
+
+/* 🔥 Premium Background Glow */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(99,102,241,0.15), transparent 40%),
+    radial-gradient(circle at 20% 80%, rgba(236,72,153,0.15), transparent 40%);
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* 🖱 Scrollbar */
@@ -88,6 +100,13 @@ body {
 }
 
 /* ============================= */
+/* 🎯 PARALLAX (SCROLL MOTION) */
+/* ============================= */
+.parallax {
+  will-change: transform;
+}
+
+/* ============================= */
 /* 🎯 FORM INPUT STYLE */
 /* ============================= */
 .input {
@@ -105,7 +124,7 @@ a,
 }
 
 /* ============================= */
-/* ✨ OPTIONAL SMALL ENHANCEMENTS */
+/* ✨ OPTIONAL ENHANCEMENTS */
 /* ============================= */
 
 /* Image smooth scaling */
@@ -116,4 +135,9 @@ img {
 /* Hover zoom utility */
 .hover-zoom:hover {
   transform: scale(1.05);
+}
+
+/* Prevent section gaps visually */
+section {
+  background: transparent;
 }

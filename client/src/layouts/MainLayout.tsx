@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
@@ -14,12 +14,32 @@ import Education from "../sections/Education"
 import ContactForm from "../components/ContactForm"
 
 export default function MainLayout() {
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
 
     const elements = document.querySelectorAll<HTMLElement>(
   ".reveal, .reveal-left, .reveal-right, .reveal-zoom"
 )
+
+useEffect(() => {
+  const handleScroll = () => {
+    const scrollY = window.scrollY
+
+    const elements = document.querySelectorAll(".parallax")
+
+    elements.forEach((el, index) => {
+      const speed = 0.15 + index * 0.03
+      const y = scrollY * speed
+
+      ;(el as HTMLElement).style.transform = `translateY(${y}px)`
+    })
+  }
+
+  window.addEventListener("scroll", handleScroll)
+
+  return () => window.removeEventListener("scroll", handleScroll)
+}, [])
 
     const observer = new IntersectionObserver(
       (entries, observer) => {
@@ -57,35 +77,35 @@ export default function MainLayout() {
       <Navbar />
 
       {/* Main Content */}
-      <main className="relative pt-24 space-y-28">
+      <main className="relative pt-24">
 
-        <section className="reveal">
+        <section className="reveal parallax">
           <Hero />
         </section>
 
-        <section className="reveal-left">
+        <section className="reveal-left parallax">
           <About />
         </section>
 
-        <section className="reveal-right">
+        <section className="reveal-right parallax">
           <Skills />
         </section>
 
         {/* NEW EDUCATION SECTION */}
 
-        <section className="reveal-zoom">
+        <section className="reveal-zoom parallax">
           <Education />
         </section>
 
-        <section className="reveal-left">
+        <section className="reveal-left parallax">
           <Experience />
         </section>
 
-        <section className="reveal-right">
+        <section className="reveal-right parallax">
           <Projects />
         </section>
 
-        <section className="reveal">
+        <section className="reveal parallax">
           <CTA />
         </section>
 
@@ -93,7 +113,7 @@ export default function MainLayout() {
 
         <section
           id="contact"
-          className="reveal py-24 px-6 max-w-4xl mx-auto"
+          className="reveal parallax py-24 px-6 max-w-4xl mx-auto"
         >
 
           <div className="text-center mb-16">
