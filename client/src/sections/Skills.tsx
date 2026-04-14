@@ -1,5 +1,5 @@
 import Container from "../components/Container"
-import { Code, Database, Server, Wrench, Cpu, Terminal } from "lucide-react"
+import { Code, Database, Wrench, Cpu, Terminal } from "lucide-react"
 
 export default function Skills() {
 
