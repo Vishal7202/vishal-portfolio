@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect } from "react"
 
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
@@ -14,13 +14,10 @@ import Education from "../sections/Education"
 import ContactForm from "../components/ContactForm"
 
 export default function MainLayout() {
-  const containerRef = useRef<HTMLDivElement>(null)
 
-  // ✅ Reveal Animation
+  // ✅ Reveal (only bottom-up for smooth feel)
   useEffect(() => {
-    const elements = document.querySelectorAll<HTMLElement>(
-      ".reveal, .reveal-left, .reveal-right, .reveal-zoom"
-    )
+    const elements = document.querySelectorAll<HTMLElement>(".reveal")
 
     const observer = new IntersectionObserver(
       (entries, observer) => {
@@ -42,15 +39,16 @@ export default function MainLayout() {
     return () => observer.disconnect()
   }, [])
 
-  // ✅ Parallax Scroll (smooth)
+  // ✅ Smooth light parallax (very subtle)
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY
       const elements = document.querySelectorAll(".parallax")
 
       elements.forEach((el) => {
-        const speed = 0.08
+        const speed = 0.03   // 🔥 very slow (natural feel)
         const y = scrollY * speed
+
         ;(el as HTMLElement).style.transform = `translateY(${y}px)`
       })
     }
@@ -72,31 +70,31 @@ export default function MainLayout() {
           </div>
         </section>
 
-        <section className="reveal-left">
+        <section className="reveal">
           <div className="parallax">
             <About />
           </div>
         </section>
 
-        <section className="reveal-right">
+        <section className="reveal">
           <div className="parallax">
             <Skills />
           </div>
         </section>
 
-        <section className="reveal-zoom">
+        <section className="reveal">
           <div className="parallax">
             <Education />
           </div>
         </section>
 
-        <section className="reveal-left">
+        <section className="reveal">
           <div className="parallax">
             <Experience />
           </div>
         </section>
 
-        <section className="reveal-right">
+        <section className="reveal">
           <div className="parallax">
             <Projects />
           </div>
