@@ -17,7 +17,9 @@ export default function MainLayout() {
 
   useEffect(() => {
 
-    const elements = document.querySelectorAll<HTMLElement>(".reveal")
+    const elements = document.querySelectorAll<HTMLElement>(
+  ".reveal, .reveal-left, .reveal-right, .reveal-zoom"
+)
 
     const observer = new IntersectionObserver(
       (entries, observer) => {
@@ -61,25 +63,25 @@ export default function MainLayout() {
           <Hero />
         </section>
 
-        <section className="reveal">
+        <section className="reveal-left">
           <About />
         </section>
 
-        <section className="reveal">
+        <section className="reveal-right">
           <Skills />
         </section>
 
         {/* NEW EDUCATION SECTION */}
 
-        <section className="reveal">
+        <section className="reveal-zoom">
           <Education />
         </section>
 
-        <section className="reveal">
+        <section className="reveal-left">
           <Experience />
         </section>
 
-        <section className="reveal">
+        <section className="reveal-right">
           <Projects />
         </section>
 

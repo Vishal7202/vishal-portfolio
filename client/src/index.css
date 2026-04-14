@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* 🌐 Global Settings */
 html {
   scroll-behavior: smooth;
 }
@@ -12,7 +13,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Scrollbar */
+/* 🖱 Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -30,23 +31,89 @@ body {
   background: rgba(99, 102, 241, 0.8);
 }
 
-/* Selection */
+/* 🖊 Text Selection */
 ::selection {
   background: #6366f1;
   color: white;
 }
 
-/* Reveal Animation */
-.reveal {
+/* ============================= */
+/* 🔥 REVEAL ANIMATION SYSTEM */
+/* ============================= */
+
+/* Base */
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-zoom {
   opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.9s ease;
+  transition: all 0.8s ease;
+  will-change: transform, opacity;
 }
 
-.reveal.active {
-  opacity: 1 !important;
-  transform: translateY(0px) !important;
+/* 🔽 Bottom → Up */
+.reveal {
+  transform: translateY(60px);
 }
-.input{
-@apply w-full bg-[#020617] border border-gray-700 rounded-lg px-4 py-2;
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ⬅ Left → Right */
+.reveal-left {
+  transform: translateX(-60px);
+}
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ➡ Right → Left */
+.reveal-right {
+  transform: translateX(60px);
+}
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 🔍 Zoom Effect */
+.reveal-zoom {
+  transform: scale(0.9);
+}
+.reveal-zoom.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ============================= */
+/* 🎯 FORM INPUT STYLE */
+/* ============================= */
+.input {
+  @apply w-full bg-[#020617] border border-gray-700 rounded-lg px-4 py-2 outline-none focus:border-indigo-500;
+}
+
+/* ============================= */
+/* 🎨 SMOOTH UI TRANSITIONS */
+/* ============================= */
+button,
+a,
+.card,
+.hover-effect {
+  transition: all 0.3s ease;
+}
+
+/* ============================= */
+/* ✨ OPTIONAL SMALL ENHANCEMENTS */
+/* ============================= */
+
+/* Image smooth scaling */
+img {
+  transition: transform 0.3s ease;
+}
+
+/* Hover zoom utility */
+.hover-zoom:hover {
+  transform: scale(1.05);
 }
