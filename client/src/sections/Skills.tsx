@@ -5,72 +5,71 @@ export default function Skills() {
 
   const skillGroups = [
 
-    {
-      title: "Programming",
-      icon: <Terminal size={22} />,
-      items: [
-        { name: "Java", level: 80 },
-        { name: "Python", level: 75 },
-        { name: "C", level: 70 },
-        { name: "JavaScript", level: 90 },
-        { name: "TypeScript", level: 75 },
-      ],
-    },
+  {
+    title: "Full Stack Development",
+    icon: <Code size={22} />,
+    items: [
+      { name: "HTML", level: 90 },
+      { name: "CSS", level: 85 },
+      { name: "Tailwind CSS", level: 88 },
+      { name: "JavaScript", level: 90 },
+      { name: "React.js", level: 85 },
+      { name: "Node.js", level: 85 },
+      { name: "Express.js", level: 80 },
+      { name: "MongoDB", level: 80 },
+    ],
+  },
 
-    {
-      title: "Frontend",
-      icon: <Code size={22} />,
-      items: [
-        { name: "React.js", level: 85 },
-        { name: "HTML", level: 90 },
-        { name: "CSS", level: 85 },
-        { name: "Tailwind CSS", level: 88 },
-      ],
-    },
+  {
+    title: "Programming",
+    icon: <Terminal size={22} />,
+    items: [
+      { name: "Java", level: 80 },
+      { name: "Python", level: 75 },
+      { name: "C", level: 70 },
+      { name: "TypeScript", level: 75 },
+    ],
+  },
 
-    {
-      title: "Backend",
-      icon: <Server size={22} />,
-      items: [
-        { name: "Node.js", level: 85 },
-        { name: "Express.js", level: 80 },
-        { name: "REST APIs", level: 90 },
-      ],
-    },
+  {
+    title: "Data Analysis",
+    icon: <Database size={22} />,
+    items: [
+      { name: "Excel", level: 85 },
+      { name: "SQL", level: 80 },
+      { name: "Python (Data Analysis)", level: 75 },
+      { name: "NumPy", level: 70 },
+      { name: "Pandas", level: 75 },
+      { name: "Matplotlib", level: 70 },
+      { name: "Seaborn", level: 70 },
+      { name: "Power BI", level: 80 },
+    ],
+  },
 
-    {
-      title: "Database",
-      icon: <Database size={22} />,
-      items: [
-        { name: "MongoDB", level: 80 },
-        { name: "Mongoose", level: 75 },
-      ],
-    },
+  {
+    title: "Core Fundamentals",
+    icon: <Cpu size={22} />,
+    items: [
+      { name: "Data Structures & Algorithms", level: 75 },
+      { name: "Object Oriented Programming", level: 80 },
+      { name: "DBMS", level: 75 },
+      { name: "Operating System", level: 70 },
+      { name: "Computer Networks", level: 70 },
+    ],
+  },
 
-    {
-      title: "Core Fundamentals",
-      icon: <Cpu size={22} />,
-      items: [
-        { name: "Data Structures & Algorithms", level: 75 },
-        { name: "Object Oriented Programming", level: 80 },
-        { name: "DBMS", level: 75 },
-        { name: "Operating System", level: 70 },
-        { name: "Computer Networks", level: 70 },
-      ],
-    },
+  {
+    title: "Tools",
+    icon: <Wrench size={22} />,
+    items: [
+      { name: "Git", level: 85 },
+      { name: "GitHub", level: 90 },
+      { name: "Postman", level: 80 },
+      { name: "VS Code", level: 95 },
+    ],
+  },
 
-    {
-      title: "Tools",
-      icon: <Wrench size={22} />,
-      items: [
-        { name: "Git", level: 85 },
-        { name: "GitHub", level: 90 },
-        { name: "Postman", level: 80 },
-        { name: "VS Code", level: 95 },
-      ],
-    },
-
-  ]
+]
 
   return (
     <section
