@@ -29,16 +29,10 @@ body::before {
 ::-webkit-scrollbar {
   width: 6px;
 }
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
 ::-webkit-scrollbar-thumb {
   background: rgba(99, 102, 241, 0.5);
   border-radius: 10px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(99, 102, 241, 0.8);
 }
@@ -50,72 +44,41 @@ body::before {
 }
 
 /* ============================= */
-/* 🔥 REVEAL ANIMATION SYSTEM */
+/* 🔥 REVEAL (ONLY CLEAN ANIMATION) */
 /* ============================= */
 
-/* Base */
-.reveal,
-.reveal-left,
-.reveal-right,
-.reveal-zoom {
+.reveal {
   opacity: 0;
+  transform: translateY(60px);
   transition: all 0.8s ease;
   will-change: transform, opacity;
 }
 
-/* 🔽 Bottom → Up */
-.reveal {
-  transform: translateY(60px);
-}
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ⬅ Left → Right */
-.reveal-left {
-  transform: translateX(-60px);
-}
-.reveal-left.active {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* ➡ Right → Left */
-.reveal-right {
-  transform: translateX(60px);
-}
-.reveal-right.active {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* 🔍 Zoom Effect */
-.reveal-zoom {
-  transform: scale(0.9);
-}
-.reveal-zoom.active {
-  opacity: 1;
-  transform: scale(1);
-}
-
 /* ============================= */
-/* 🎯 PARALLAX (SCROLL MOTION) */
+/* 🎯 PARALLAX (VERY LIGHT) */
 /* ============================= */
+
 .parallax {
   will-change: transform;
 }
 
 /* ============================= */
-/* 🎯 FORM INPUT STYLE */
+/* 🎯 FORM INPUT */
 /* ============================= */
+
 .input {
   @apply w-full bg-[#020617] border border-gray-700 rounded-lg px-4 py-2 outline-none focus:border-indigo-500;
 }
 
 /* ============================= */
-/* 🎨 SMOOTH UI TRANSITIONS */
+/* 🎨 UI SMOOTH TRANSITIONS */
 /* ============================= */
+
 button,
 a,
 .card,
@@ -124,20 +87,18 @@ a,
 }
 
 /* ============================= */
-/* ✨ OPTIONAL ENHANCEMENTS */
+/* ✨ SMALL ENHANCEMENTS */
 /* ============================= */
 
-/* Image smooth scaling */
 img {
   transition: transform 0.3s ease;
 }
 
-/* Hover zoom utility */
 .hover-zoom:hover {
   transform: scale(1.05);
 }
 
-/* Prevent section gaps visually */
+/* Section clean look */
 section {
   background: transparent;
 }
