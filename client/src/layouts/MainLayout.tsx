@@ -106,10 +106,10 @@ export default function MainLayout() {
         </div>
       </section>
 
-      <section
-        id="contact"
-        className="reveal py-24 px-6 max-w-4xl mx-auto"
-      >
+        <section
+    id="contact"
+    className="reveal py-24 pb-40 px-6 max-w-4xl mx-auto"
+  >
         <div className="parallax">
           <ContactForm />
         </div>
