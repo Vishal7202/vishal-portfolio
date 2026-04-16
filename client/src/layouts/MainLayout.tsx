@@ -38,25 +38,7 @@ export default function MainLayout() {
 
     return () => observer.disconnect()
   }, [])
-
-  // ✅ Smooth light parallax (very subtle)
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY
-      const elements = document.querySelectorAll(".parallax")
-
-      elements.forEach((el) => {
-        const speed = 0.03   // 🔥 very slow (natural feel)
-        const y = scrollY * speed
-
-        ;(el as HTMLElement).style.transform = `translateY(${y}px)`
-      })
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
+  
   return (
   <div className="flex flex-col min-h-screen overflow-x-hidden text-white">
 
