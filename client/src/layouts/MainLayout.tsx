@@ -58,83 +58,67 @@ export default function MainLayout() {
   }, [])
 
   return (
-    <div className="overflow-x-hidden text-white">
+  <div className="flex flex-col min-h-screen overflow-x-hidden text-white">
 
-      <Navbar />
+    <Navbar />
 
-      <main className="relative pt-24">
+    <main className="flex-grow relative pt-24">
 
-        <section className="reveal">
-          <div className="parallax">
-            <Hero />
-          </div>
-        </section>
+      <section className="reveal">
+        <div className="parallax">
+          <Hero />
+        </div>
+      </section>
 
-        <section className="reveal">
-          <div className="parallax">
-            <About />
-          </div>
-        </section>
+      <section className="reveal">
+        <div className="parallax">
+          <About />
+        </div>
+      </section>
 
-        <section className="reveal">
-          <div className="parallax">
-            <Skills />
-          </div>
-        </section>
+      <section className="reveal">
+        <div className="parallax">
+          <Skills />
+        </div>
+      </section>
 
-        <section className="reveal">
-          <div className="parallax">
-            <Education />
-          </div>
-        </section>
+      <section className="reveal">
+        <div className="parallax">
+          <Education />
+        </div>
+      </section>
 
-        <section className="reveal">
-          <div className="parallax">
-            <Experience />
-          </div>
-        </section>
+      <section className="reveal">
+        <div className="parallax">
+          <Experience />
+        </div>
+      </section>
 
-        <section className="reveal">
-          <div className="parallax">
-            <Projects />
-          </div>
-        </section>
+      <section className="reveal">
+        <div className="parallax">
+          <Projects />
+        </div>
+      </section>
 
-        <section className="reveal">
-          <div className="parallax">
-            <CTA />
-          </div>
-        </section>
+      <section className="reveal">
+        <div className="parallax">
+          <CTA />
+        </div>
+      </section>
 
-        <section
-          id="contact"
-          className="reveal py-24 px-6 max-w-4xl mx-auto"
-        >
-          <div className="parallax">
+      <section
+        id="contact"
+        className="reveal py-24 px-6 max-w-4xl mx-auto"
+      >
+        <div className="parallax">
+          <ContactForm />
+        </div>
+      </section>
 
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4
-              bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400
-              bg-clip-text text-transparent">
-                Let’s Work Together
-              </h2>
+    </main>
 
-              <p className="text-gray-400 max-w-xl mx-auto leading-relaxed">
-                Have a project idea, collaboration proposal,
-                or just want to say hi? Drop a message and I’ll
-                respond as soon as possible.
-              </p>
-            </div>
+    <Footer />
 
-            <ContactForm />
-
-          </div>
-        </section>
-
-      </main>
-
-      <Footer />
-
-    </div>
-  )
+  </div>
+)
 }
