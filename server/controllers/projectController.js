@@ -43,7 +43,9 @@ exports.createProject = async (req, res) => {
       featured
     } = req.body || {}
 
-    const imageFile = req.file ? req.file.filename : ""
+    const imageFile = req.file
+  ? `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`
+  : ""
 
     let techArray = tech
 
@@ -100,8 +102,8 @@ exports.updateProject = async (req, res) => {
 
     // NEW IMAGE HANDLE
     if (req.file) {
-      updates.image = req.file.filename
-    }
+  updates.image = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`
+}
 
     if (updates.tech && typeof updates.tech === "string") {
       updates.tech = updates.tech.split(",").map(t => t.trim())
